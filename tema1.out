@@ -1,0 +1,23 @@
+Number of available units: 10
+Incident 1 was assigned to unit 1, and has the following status: "intervened"
+Incident 4 was assigned to unit 2, and has the following status: "intervened"
+Incident 7 was assigned to unit 3, and has the following status: "intervened"
+Incident 10 was assigned to unit 4, and has the following status: "intervened"
+Incident 2 was assigned to unit 5, and has the following status: "intervened"
+Incident 5 was assigned to unit 6, and has the following status: "intervened"
+Number of available units: 4
+Number of available units: 7
+Incident 2 has medium priority, the following description: "multiple vehicle collision downtown" and is intervened
+Incident 3 has low priority, the following description: "noise complaint at nightclub" and is intervened
+Incident 5 has medium priority, the following description: "person unconscious in subway station" and is intervened
+Incident 6 has low priority, the following description: "cat stuck in tree" and is intervened
+Incident 8 has medium priority, the following description: "road blocked after storm" and is intervened
+Incident 9 has low priority, the following description: "false alarm verification request" and is queued
+Incident 10 has high priority, the following description: "warehouse fire near airport" and is intervened
+Incident 8 has medium priority, the following description: "road blocked after storm" and is intervened
+Incident 9 has low priority, the following description: "false alarm verification request" and is queued
+Unit 1 is type A and is available
+Unit 2 is type B and is available
+Unit 3 is type C and is available
+Unit 4 is type A and is unavailable
+Unit 5 is type B and is unavailable

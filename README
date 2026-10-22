@@ -1,0 +1,50 @@
+## Structuri de date
+
+- System este containerul central care ține toate echipajele, incidentele și intervențiile.
+- Unit reprezintă un echipaj de urgență cu un ID, un tip și un flag de disponibilitate.
+- Incident este stocat într-o listă dublu înlănțuită circulară și reține ID-ul, prioritatea, descrierea și statusul.
+- Intervention leagă un echipaj de incidentul la care a fost trimis, tot într-o listă circulară.
+- TCoada este o coadă simplu înlănțuită folosită atât pentru echipajele disponibile, cât și pentru incidente pe fiecare nivel de prioritate.
+- TStiva este o stivă simplu înlănțuită care reține istoricul dispecerizărilor pentru operația de undo.
+
+Fiecare listă de incidente și intervenții folosește un nod santinelă pentru a simplifica condițiile de frontieră.
+
+## Cozi de prioritate
+
+Incidentele sunt împărțite în trei cozi separate: una pentru prioritate ridicată, una pentru prioritate medie și una pentru prioritate scăzută. La dispecerizare, sistemul procesează întotdeauna mai întâi coada cu prioritatea cea mai mare.
+
+### Comenzi suportate
+
+- ADD_INCIDENT id prioritate descriere — înregistrează un incident nou și îl plasează în coada de prioritate corespunzătoare.
+- SHOW_INCIDENT id — afișează detaliile unui incident.
+- SHOW_UNIT id — afișează detaliile unui echipaj.
+- CHECK_UNITS_AVAILABILITY — afișează câte echipaje sunt disponibile în acest moment.
+- DISPATCH — alocă un echipaj disponibil celui mai prioritar incident din cozi.
+- UNDO_LAST_DISPATCH — anulează ultima dispecerizare, dacă incidentul nu e deja rezolvat.
+- SHOW_INTERVENTIONS — listează toate intervențiile active cu statusul lor.
+- SOLVED_INCIDENT id — marchează un incident ca rezolvat și returnează echipajul în pool-ul de disponibili.
+
+## Funcții principale
+
+### Inițializare
+- InitS inițializează sistemul și alocă nodurile santinelă pentru liste.
+- InitCoada creează o coadă goală.
+
+### Operații pe coadă și stivă
+- IntrQ și ExtrQ adaugă, respectiv extrag elemente din coadă.
+- Push și Pop adaugă, respectiv extrag elemente din stivă.
+
+### Logica de bază
+- AdaugaIncident creează un incident, îl inserează în lista circulară și îl trimite în coada potrivită.
+- Dispatch extrage un echipaj și un incident, creează o intervenție și o salvează pe stivă.
+- Undo_Dispatch anulează ultima intervenție, re-încoada echipajul și incidentul și eliberează memoria.
+- IncidentRezolvat marchează intervenția ca rezolvată și întoarce echipajul în pool.
+
+### Afișare
+- AfisareIncident caută și afișează un incident după ID.
+- AfisareEchipaj caută și afișează un echipaj după ID.
+- AfisareInterventii parcurge și afișează toate intervențiile.
+- VerificareDisponibilitate numără echipajele din coada de disponibili și afișează rezultatul.
+
+### Eliberare memorie
+- DistrugeCoada, DistrugeStiva și DistrugeSistem eliberează complet toate structurile alocate dinamic, inclusiv descrierile incidentelor.
